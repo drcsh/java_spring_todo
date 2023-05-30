@@ -1,12 +1,26 @@
 package com.example.todo;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+
 @RestController
-@RequestMapping("/note")
-public class NoteController {
+@RequestMapping("/notes")
+public class NotesController {
 
     private final NoteRepository noteRepository;
     
-    public NoteController(NoteRepository noteRepository){
+    public NotesController(NoteRepository noteRepository){
         this.noteRepository = noteRepository;
     }
 
@@ -28,7 +42,7 @@ public class NoteController {
 
     @PutMapping("/{id}")
     public ResponseEntity updateNote(@PathVariable Long id, @RequestBody Note note) {
-        Note currentNote = noteRepository.findById(id).orElseThrow(RuntimeException::new)
+        Note currentNote = noteRepository.findById(id).orElseThrow(RuntimeException::new);
         currentNote.setTitle(note.getTitle());
         currentNote.setContent(note.getContent());
         currentNote = noteRepository.save(note);
