@@ -5,10 +5,21 @@ Based on https://www.baeldung.com/spring-boot-react-crud
 
 # Running
 
-Run with Maven:
+Requires Maven
+
+### Back End (Spring Boot)
+In the /todo folder:
 ```
 mvn spring-boot:run
 ```
+
+### Front End (React)
+In the /frontend folder:
+```
+npm run
+```
+
+# Handy commands
 
 Add a ToDo via Curl:
 
