@@ -5,7 +5,7 @@ Based on https://www.baeldung.com/spring-boot-react-crud
 
 # Running
 
-Requires Maven
+Requires Maven and NPM
 
 ### Back End (Spring Boot)
 In the /todo folder:

@@ -1,25 +1,50 @@
 import logo from './logo.svg';
 import './App.css';
+import { Component } from 'react';
 
-function App() {
+
+class NoteList extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {notes: []};
+  }
+
+  componentDidMount() {
+    var response = fetch('/notes')
+    .then(response => response.json())
+    .then(data => this.setState({notes: data}));
+  }
+
+  render() {
+    const {notes} = this.state;
+    console.log(this.state)
+    return (
+      <div>
+        <h2>Todo List</h2>
+        {notes.map(note =>
+                  <div key={note.id}>
+                    {note.title}: ({note.content})
+                  </div>
+              )}
+      </div>
+    );
+  }
+}
+
+
+
+export default function App() {
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div className="App-intro">
+              <NoteList />
+            </div>
       </header>
     </div>
   );
 }
 
-export default App;
